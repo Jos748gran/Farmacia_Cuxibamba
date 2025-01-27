@@ -9,6 +9,17 @@ Este proyecto es una aplicación web para la gestión de una farmacia, desarroll
 
 ![Farmacia](https://github.com/user-attachments/assets/069d6e81-9506-4337-a4c6-196a6d74ad21)
 
+## Imagenes de la Intefaz
+
+![Captura de pantalla 2025-01-27 075316](https://github.com/user-attachments/assets/7898e2bc-fabf-4b5e-94dc-db0af1f5772b)
+
+![Captura de pantalla 2025-01-27 075326](https://github.com/user-attachments/assets/b09b2e58-fbb6-41ca-b3de-2c3522c92fd3)
+
+![Captura de pantalla 2025-01-27 075412](https://github.com/user-attachments/assets/d7ffc8a2-30e4-401e-a2eb-bb039e670529)
+
+![Captura de pantalla 2025-01-27 075423](https://github.com/user-attachments/assets/d68bc474-c972-4267-b771-609fbe814993)
+
+
 ## Características
 
 - **Gestión de clientes**: Permite registrar, actualizar y eliminar información de los clientes.
