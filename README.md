@@ -2,6 +2,13 @@
 
 Este proyecto es una aplicación web para la gestión de una farmacia, desarrollada con Django. La aplicación permite gestionar clientes, usuarios, ventas, inventarios, transferencias de medicamentos, entre otros.
 
+### Farmacia
+- `nombre`: Cuxibamba 
+
+## Diagrama UML
+
+![Farmacia](https://github.com/user-attachments/assets/069d6e81-9506-4337-a4c6-196a6d74ad21)
+
 ## Características
 
 - **Gestión de clientes**: Permite registrar, actualizar y eliminar información de los clientes.
@@ -117,13 +124,6 @@ Accede a la aplicación en tu navegador web en `http://127.0.0.1:8000/`.
 - `calle_principal`: Calle principal de la dirección.
 - `calle_secundaria`: Calle secundaria de la dirección.
 - `ciudad`: Ciudad de la dirección.
-
-### Farmacia
-- `nombre`: Nombre de la farmacia.
-
-## Diagrama UML
-
-![Farmacia](https://github.com/user-attachments/assets/069d6e81-9506-4337-a4c6-196a6d74ad21)
 
 
 
