@@ -1,141 +1,106 @@
-# Proyecto Farmacia
+# Farmacia Cuxibamba
 
-Este proyecto es una aplicación web para la gestión de una farmacia, desarrollada con Django. La aplicación permite gestionar clientes, usuarios, ventas, inventarios, transferencias de medicamentos, entre otros.
-
-### Farmacia
-- `nombre`: Cuxibamba 
-
-## Diagrama UML
-
-![Farmacia](https://github.com/user-attachments/assets/069d6e81-9506-4337-a4c6-196a6d74ad21)
-
-## Imagenes de la Intefaz
-
-![Captura de pantalla 2025-01-27 075316](https://github.com/user-attachments/assets/7898e2bc-fabf-4b5e-94dc-db0af1f5772b)
-
-![Captura de pantalla 2025-01-27 075326](https://github.com/user-attachments/assets/b09b2e58-fbb6-41ca-b3de-2c3522c92fd3)
-
-![Captura de pantalla 2025-01-27 075412](https://github.com/user-attachments/assets/d7ffc8a2-30e4-401e-a2eb-bb039e670529)
-
-![Captura de pantalla 2025-01-27 075423](https://github.com/user-attachments/assets/d68bc474-c972-4267-b771-609fbe814993)
-
+Este proyecto es una aplicación web para la gestión de una farmacia, desarrollada con Django. Permite gestionar clientes, empleados, medicamentos, ventas, inventarios, transferencias de medicamentos y más.
 
 ## Características
 
-- **Gestión de clientes**: Permite registrar, actualizar y eliminar información de los clientes.
-- **Gestión de usuarios**: Administra los usuarios del sistema con diferentes roles.
-- **Gestión de ventas**: Registra las ventas realizadas en la farmacia.
-- **Gestión de inventarios**: Controla el stock de medicamentos en las diferentes sucursales.
-- **Transferencias de medicamentos**: Facilita la transferencia de medicamentos entre sucursales.
-- **Administración de sucursales y direcciones**: Gestiona la información de las sucursales y sus ubicaciones.
+- Gestión de usuarios con roles (Cliente, Empleado, Administrativo)
+- CRUD de clientes, empleados, medicamentos, ventas, inventarios y transferencias de medicamentos
+- Autenticación y autorización de usuarios
+- Sistema de gestión con interfaz amigable
 
-## Tecnologías Utilizadas
+## Requisitos
 
-- **Lenguaje de programación**: Python
-- **Framework web**: Django 5.1.5
-- **Base de datos**: MySQL
-- **Conectores de base de datos**: `mysql-connector-python`, `mysqlclient`
-- **Otros paquetes**: `asgiref`, `sqlparse`, `tzdata`, `views`
+- Python 3.8+
+- Django 5.1.5
+- SQLite (base de datos por defecto)
 
 ## Instalación
 
-Sigue estos pasos para configurar y ejecutar el proyecto en tu entorno local:
-
 1. Clona el repositorio:
     ```bash
-    git clone https://github.com/tu_usuario/tu_repositorio.git
+    git clone https://github.com/Carlosjosu/Farmacia_Cuxibamba.git
+    cd Farmacia_Cuxibamba
     ```
-2. Navega al directorio del proyecto:
-    ```bash
-    cd tu_repositorio
-    ```
-3. Crea un entorno virtual:
+
+2. Crea y activa un entorno virtual:
     ```bash
     python -m venv env
+    source env/bin/activate  # En Windows usa `env\Scripts\activate`
     ```
-4. Activa el entorno virtual:
-    - En Windows:
-        ```bash
-        .\env\Scripts\activate
-        ```
-    - En macOS/Linux:
-        ```bash
-        source env/bin/activate
-        ```
-5. Instala las dependencias:
-    ```bash
-    pip install -r requirements.txt
-    ```
-6. Realiza las migraciones:
+
+3. Realiza las migraciones de la base de datos:
     ```bash
     python manage.py migrate
     ```
-7. Ejecuta el servidor de desarrollo:
+
+4. Crea un superusuario:
+    ```bash
+    python manage.py createsuperuser
+    ```
+
+5. Inicia el servidor de desarrollo:
     ```bash
     python manage.py runserver
     ```
 
+7. Accede a la aplicación en tu navegador:
+    ```
+    http://127.0.0.1:8000
+    ```
+
 ## Uso
 
-Accede a la aplicación en tu navegador web en `http://127.0.0.1:8000/`.
+### Gestión de Usuarios
 
-## Modelos
+- Registro de nuevos usuarios
+- Inicio de sesión
+- Cambio de contraseña
+- Restablecimiento de contraseña
 
-### Cliente
-- `cedula`: Identificación del cliente.
-- `nombre`: Nombre del cliente.
-- `teléfono`: Número de teléfono del cliente.
-- `dirección`: Dirección del cliente.
+### Gestión de Clientes
 
-### Usuario
-- `cedula`: Identificación del usuario.
-- `nombre`: Nombre del usuario.
-- `teléfono`: Número de teléfono del usuario.
-- `rol`: Rol del usuario en el sistema.
-- `nombre_usuario`: Nombre de usuario para el inicio de sesión.
-- `contraseña`: Contraseña del usuario.
+- Crear, leer, actualizar y eliminar clientes
 
-### Venta
-- `cliente`: Cliente que realiza la compra.
-- `sucursal`: Sucursal donde se realiza la venta.
-- `tipo_pago`: Tipo de pago utilizado.
-- `fecha`: Fecha de la venta.
-- `total`: Total de la venta.
+### Gestión de Empleados
 
-### DetalleVenta
-- `venta`: Venta a la que pertenece el detalle.
-- `medicamento`: Medicamento vendido.
-- `cantidad_medicamento`: Cantidad de medicamento vendido.
-- `precio`: Precio del medicamento.
+- Crear, leer, actualizar y eliminar empleados
 
-### Medicamento
-- `nombre_medicamento`: Nombre del medicamento.
-- `descripcion`: Descripción del medicamento.
-- `presentación`: Presentación del medicamento (tabletas, jarabe, etc.).
+### Gestión de Medicamentos
 
-### Inventario
-- `sucursal`: Sucursal donde se encuentra el inventario.
-- `medicamento`: Medicamento en inventario.
-- `cantidad_inventario`: Cantidad de medicamento en inventario.
+- Crear, leer, actualizar y eliminar medicamentos
 
-### TransferenciaDeMedicamentos
-- `sucursal_origen`: Sucursal de origen de la transferencia.
-- `sucursal_destino`: Sucursal de destino de la transferencia.
-- `medicamento`: Medicamento transferido.
-- `cantidad_transferencia`: Cantidad de medicamento transferido.
-- `fecha`: Fecha de la transferencia.
+### Gestión de Ventas
 
-### Sucursal
-- `nombre`: Nombre de la sucursal.
-- `dirección`: Dirección de la sucursal.
-- `teléfono`: Teléfono de la sucursal.
-- `farmacia`: Farmacia a la que pertenece la sucursal.
+- Crear, leer, actualizar y eliminar ventas
 
-### Dirección
-- `calle_principal`: Calle principal de la dirección.
-- `calle_secundaria`: Calle secundaria de la dirección.
-- `ciudad`: Ciudad de la dirección.
+### Gestión de Inventarios
 
+- Crear, leer, actualizar y eliminar inventarios
+
+### Gestión de Transferencias de Medicamentos
+
+- Crear, leer, actualizar y eliminar transferencias de medicamentos
+
+## UML
+
+![Farmacia](https://github.com/user-attachments/assets/950b5102-131e-47c8-bd6d-2ade181ee04e)
+
+## Capturas de Pantalla
+
+### Página Principal
+
+![image](https://github.com/user-attachments/assets/3c06e05c-922b-473b-9591-7567ce101b61)
+
+### Inicio de Sesion
+
+![image](https://github.com/user-attachments/assets/793136ff-8e83-4721-95b4-fc2c722e9bbc)
+
+### Registrar Usuario
+![image](https://github.com/user-attachments/assets/ee9e6db2-5490-47fb-8283-dad9d10303cb)
+
+### Interfaz
+![image](https://github.com/user-attachments/assets/2e77ae89-3996-49b6-933d-76407d8f1351)
 
 
 ## Autor
