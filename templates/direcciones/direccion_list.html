@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Direcciones</title>
+</head>
+<body>
+    <h1>Lista de Direcciones</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Calle Principal</th>
+                <th>Calle Secundaria</th>
+                <th>Ciudad</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for direccion in direcciones %}
+                <tr>
+                    <td>{{ direccion.calle_principal }}</td>
+                    <td>{{ direccion.calle_secundaria }}</td>
+                    <td>{{ direccion.ciudad }}</td>
+                    <td>
+                        <a href="{% url 'direccion_update' direccion.pk %}">Editar</a>
+                        <a href="{% url 'direccion_delete' direccion.pk %}">Eliminar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'direccion_create' %}">Crear Dirección</a>
+</body>
+</html>

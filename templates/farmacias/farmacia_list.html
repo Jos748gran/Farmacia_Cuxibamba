@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Farmacias</title>
+</head>
+<body>
+    <h1>Lista de Farmacias</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for farmacia in farmacias %}
+                <tr>
+                    <td>{{ farmacia.nombre }}</td>
+                    <td>
+                        <a href="{% url 'farmacia_update' farmacia.pk %}">Editar</a>
+                        <a href="{% url 'farmacia_delete' farmacia.pk %}">Eliminar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'farmacia_create' %}">Crear Farmacia</a>
+</body>
+</html>

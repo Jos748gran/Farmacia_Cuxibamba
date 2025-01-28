@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Detalles de Venta</title>
+</head>
+<body>
+    <h1>Lista de Detalles de Venta</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Venta</th>
+                <th>Medicamento</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for detalle in detalles_venta %}
+                <tr>
+                    <td>{{ detalle.venta }}</td>
+                    <td>{{ detalle.medicamento }}</td>
+                    <td>{{ detalle.cantidad_medicamento }}</td>
+                    <td>{{ detalle.precio }}</td>
+                    <td>
+                        <a href="{% url 'detalle_venta_update' detalle.pk %}">Editar</a>
+                        <a href="{% url 'detalle_venta_delete' detalle.pk %}">Eliminar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'detalle_venta_create' %}">Crear Detalle de Venta</a>
+</body>
+</html>
