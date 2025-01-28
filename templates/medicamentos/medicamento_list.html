@@ -1,0 +1,30 @@
+<!-- templates/medicamentos/medicamento_list.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Medicamentos</title>
+</head>
+<body>
+    <h1>Lista de Medicamentos</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Presentación</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for medicamento in medicamentos %}
+                <tr>
+                    <td>{{ medicamento.nombre_medicamento }}</td>
+                    <td>{{ medicamento.descripcion }}</td>
+                    <td>{{ medicamento.presentación }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'medicamento_create' %}">Crear Medicamento</a>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!-- templates/direcciones/direccion_form.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Dirección</title>
+</head>
+<body>
+    <h1>Formulario de Dirección</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar</button>
+    </form>
+    <a href="{% url 'direccion_list' %}">Volver a la lista</a>
+</body>
+</html>

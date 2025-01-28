@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Detalle de Venta</title>
+</head>
+<body>
+    <h1>Formulario de Detalle de Venta</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar</button>
+    </form>
+    <a href="{% url 'detalle_venta_list' %}">Volver a la lista</a>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Ventas</title>
+</head>
+<body>
+    <h1>Lista de Ventas</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Cliente</th>
+                <th>Sucursal</th>
+                <th>Tipo de Pago</th>
+                <th>Fecha</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for venta in ventas %}
+                <tr>
+                    <td>{{ venta.cliente }}</td>
+                    <td>{{ venta.sucursal }}</td>
+                    <td>{{ venta.tipo_pago }}</td>
+                    <td>{{ venta.fecha }}</td>
+                    <td>{{ venta.total }}</td>
+                    <td>
+                        <a href="{% url 'venta_update' venta.pk %}">Editar</a>
+                        <a href="{% url 'venta_delete' venta.pk %}">Eliminar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'venta_create' %}">Crear Venta</a>
+</body>
+</html>
