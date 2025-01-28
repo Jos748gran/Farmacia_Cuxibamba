@@ -62,7 +62,7 @@ class FarmaciaAdmin(admin.ModelAdmin):
 admin.site.register(Farmacia, FarmaciaAdmin)
 
 class UsuarioAdmin(admin.ModelAdmin):
-    list_display = ('cedula', 'nombre', 'teléfono', 'rol', 'nombre_usuario', 'contraseña')
-    list_filter = ('cedula', 'nombre', 'teléfono', 'rol', 'nombre_usuario', 'contraseña')
-    search_fields = ('cedula', 'nombre', 'teléfono', 'rol', 'nombre_usuario', 'contraseña')
+    list_display = ('cedula', 'nombre', 'teléfono', 'rol', 'nombre_usuario', )
+    list_filter = ('cedula', 'nombre', 'teléfono', 'rol', 'nombre_usuario', )
+    search_fields = ('cedula', 'nombre', 'teléfono', 'rol', 'nombre_usuario', )
 admin.site.register(Usuario, UsuarioAdmin)

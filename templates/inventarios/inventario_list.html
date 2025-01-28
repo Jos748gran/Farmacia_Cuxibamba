@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Inventarios</title>
+</head>
+<body>
+    <h1>Lista de Inventarios</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Sucursal</th>
+                <th>Medicamento</th>
+                <th>Cantidad</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for inventario in inventarios %}
+                <tr>
+                    <td>{{ inventario.sucursal }}</td>
+                    <td>{{ inventario.medicamento }}</td>
+                    <td>{{ inventario.cantidad_inventario }}</td>
+                    <td>
+                        <a href="{% url 'inventario_update' inventario.pk %}">Editar</a>
+                        <a href="{% url 'inventario_delete' inventario.pk %}">Eliminar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'inventario_create' %}">Crear Inventario</a>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Transferencias</title>
+</head>
+<body>
+    <h1>Lista de Transferencias</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Sucursal Origen</th>
+                <th>Sucursal Destino</th>
+                <th>Medicamento</th>
+                <th>Cantidad</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transferencia in transferencias %}
+                <tr>
+                    <td>{{ transferencia.sucursal_origen }}</td>
+                    <td>{{ transferencia.sucursal_destino }}</td>
+                    <td>{{ transferencia.medicamento }}</td>
+                    <td>{{ transferencia.cantidad_transferencia }}</td>
+                    <td>{{ transferencia.fecha }}</td>
+                    <td>
+                        <a href="{% url 'transferencia_update' transferencia.pk %}">Editar</a>
+                        <a href="{% url 'transferencia_delete' transferencia.pk %}">Eliminar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'transferencia_create' %}">Crear Transferencia</a>
+</body>
+</html>

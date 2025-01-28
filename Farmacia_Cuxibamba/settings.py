@@ -77,18 +77,14 @@ WSGI_APPLICATION = 'Farmacia_Cuxibamba.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',  # Motor para MySQL
-        'NAME': 'farmacia_cuxibamba',  # Nombre de la base de datos
-        'USER': 'root',
-        'PASSWORD': 'cancer50',
-        'HOST': 'localhost',  # Cambiar si usas un servidor remoto
-        'PORT': '3306',       # Puerto predeterminado de MySQL
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-        },
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
+
+AUTH_USER_MODEL = 'Farmacia.Usuario'
+AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
 
 
 # Password validation

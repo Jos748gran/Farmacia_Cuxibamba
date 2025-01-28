@@ -2,15 +2,17 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Página para el Empleado</title>
+    <title>Iniciar Sesión</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <h1>Página para el Empleado</h1>
-    <p>Bienvenido, empleado.</p>
+    <h1>Iniciar Sesión</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Iniciar Sesión</button>
+    </form>
     <a href="{% url 'home' %}">Ir a Home</a>
-    <!-- Añadir más contenido aquí -->
-    <p>Esta es una sección adicional para empleados.</p>
 </body>
 </html>

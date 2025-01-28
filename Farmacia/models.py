@@ -1,8 +1,11 @@
 from typing import Any
 
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractUser, PermissionsMixin
 from django.db import models
 from enum import Enum
+from django.contrib.auth.models import Group, Permission
+
 # Create your models here.
 class Rol(Enum):
     CLIENTE = 'Cliente'
@@ -31,21 +34,47 @@ class Persona(models.Model):
         return self.nombre + ' ' + self.cedula + ' ' + self.teléfono
 
 class Cliente(Persona):
-
     dirección = models.CharField(max_length=50)
 
     def __str__(self):
         return self.nombre
 
 
-class Usuario(Persona):
-    rol = models.CharField(max_length=50,
-        choices=[(tag.name, tag.value) for tag in Rol])
-    nombre_usuario = models.CharField(max_length=50)
-    contraseña = models.CharField(max_length=50)
+class UsuarioManager(BaseUserManager):
+    def create_user(self, nombre_usuario, password=None, **extra_fields):
+        if not nombre_usuario:
+            raise ValueError('El nombre de usuario debe ser proporcionado')
+        user = self.model(nombre_usuario=nombre_usuario, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, nombre_usuario, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+
+        return self.create_user(nombre_usuario, password, **extra_fields)
+
+class Usuario(AbstractBaseUser, PermissionsMixin):
+    cedula = models.CharField(max_length=10, primary_key=True)
+    nombre = models.CharField(max_length=100)
+    teléfono = models.CharField(max_length=15)
+    rol = models.CharField(max_length=50, choices=[(tag.name, tag.value) for tag in Rol])
+    nombre_usuario = models.CharField(max_length=50, unique=True)
+    password = models.CharField(max_length=256)
+    last_login = models.DateTimeField(blank=True, null=True)
+    is_staff = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
+    groups = models.ManyToManyField(Group, related_name='usuario_set', blank=True)
+    user_permissions = models.ManyToManyField(Permission, related_name='usuario_set', blank=True)
+
+    USERNAME_FIELD = 'nombre_usuario'
+    REQUIRED_FIELDS = ['cedula', 'nombre', 'teléfono', 'rol']
+
+    objects = UsuarioManager()
 
     def __str__(self):
-        return f'{self.rol} {self.nombre_usuario} {self.contraseña}'
+        return self.nombre_usuario
 
 
 class Dirección(models.Model):
