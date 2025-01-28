@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <h1>Bienvenido a la Página Principal</h1>
-    <p>Esta es la página de inicio de tu aplicación.</p>
-    <a href="{% url 'login' %}">Login</a>
-    <a href="{% url 'registrar_usuario' %}">Registrar Usuario</a>
+    <div class="container">
+        <h1>Farmacia Cuxibamba</h1>
+        <a href="{% url 'login' %}"><button>Iniciar sesión</button></a>
+        <a href="{% url 'registrar_usuario' %}"><button>Registrar Usuario</button></a>
+    </div>
 </body>
 </html>

@@ -3,21 +3,53 @@
 /* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/HD-wallpaper-turquoise-sea-underwater-turquoise.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.5; /* Ajusta la opacidad según sea necesario */
+    z-index: -1; /* Asegura que el fondo esté detrás del contenido */
+}
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #e0f7fa; /* Light cyan background */
-    margin: 0;
-    padding: 0;
-    color: #333;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    flex-direction: column;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background: #f0f0f0;
 }
 
+.container {
+    text-align: center;
+}
+
+h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+a {
+    display: inline-block;
+    margin: 10px 20px;
+    font-size: 1.5em;
+}
+
+a button {
+    padding: 15px 30px;
+    font-size: 1.2em;
+}
+
+
 h1, h2 {
-    color: #00796b; /* Teal color for headings */
+    color: #000; /* Teal color for headings */
     text-align: center;
     margin-top: 20px;
 }
