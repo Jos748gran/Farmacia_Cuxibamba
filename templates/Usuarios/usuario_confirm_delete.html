@@ -6,15 +6,15 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/tablas.css' %}">
 </head>
-<body class="medicamento-list">
+<body class="usuario-list">
     <div class="container">
         <h1>Confirmar Eliminación</h1>
-        <p>¿Estás seguro de que deseas eliminar {{ medicamento.nombre_medicamento }}?</p>
+        <p>¿Estás seguro de que deseas eliminar el usuario {{ usuario.nombre }}?</p>
         <form method="post">
             {% csrf_token %}
             <button type="submit" class="delete">Eliminar</button>
         </form>
-        <a href="{% url 'medicamento_list' %}"><button>Cancelar</button></a>
+        <a href="{% url 'usuario_list' %}"><button>Cancelar</button></a>
     </div>
 </body>
 </html>

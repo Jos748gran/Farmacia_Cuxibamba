@@ -6,13 +6,13 @@ from Farmacia.models import Usuario, Dirección
 class UsuarioForm(forms.ModelForm):
     class Meta:
         model = Usuario
-        fields = ['cedula', 'nombre', 'teléfono', 'rol', 'nombre_usuario', 'password']
+        fields = ['cedula', 'nombre', 'teléfono', 'rol', 'nombre_usuario',]
         widgets = {
             'password': forms.PasswordInput(),
         }
 
 
-from django import forms
+
 from .models import Medicamento
 
 class MedicamentoForm(forms.ModelForm):
@@ -21,8 +21,6 @@ class MedicamentoForm(forms.ModelForm):
         fields = ['nombre_medicamento', 'descripcion', 'presentación']
 
 
-
-from django import forms
 from .models import Cliente
 
 class ClienteForm(forms.ModelForm):
@@ -37,7 +35,7 @@ class DirecciónForm(forms.ModelForm):
 
 
 
-from django import forms
+
 from .models import Farmacia
 
 class FarmaciaForm(forms.ModelForm):
@@ -46,7 +44,7 @@ class FarmaciaForm(forms.ModelForm):
         fields = ['nombre']
 
 
-from django import forms
+
 from .models import Sucursal
 
 class SucursalForm(forms.ModelForm):
@@ -55,7 +53,7 @@ class SucursalForm(forms.ModelForm):
         fields = ['nombre', 'dirección', 'teléfono', 'farmacia']
 
 
-from django import forms
+
 from .models import Administrativo
 
 class AdministrativoForm(forms.ModelForm):
@@ -63,7 +61,7 @@ class AdministrativoForm(forms.ModelForm):
         model = Administrativo
         fields = ['cedula', 'nombre', 'teléfono', 'identificación', 'sueldo', 'sucursal', 'cargo', 'horario']
 
-from django import forms
+
 from .models import Venta
 
 class VentaForm(forms.ModelForm):
@@ -72,7 +70,7 @@ class VentaForm(forms.ModelForm):
         fields = ['cliente', 'sucursal', 'tipo_pago', 'fecha', 'total']
 
 
-from django import forms
+
 from .models import Inventario
 
 class InventarioForm(forms.ModelForm):
@@ -81,7 +79,7 @@ class InventarioForm(forms.ModelForm):
         fields = ['sucursal', 'medicamento', 'cantidad_inventario']
 
 
-from django import forms
+
 from .models import TransferenciaDeMedicamentos
 
 class TransferenciaDeMedicamentosForm(forms.ModelForm):
@@ -89,7 +87,7 @@ class TransferenciaDeMedicamentosForm(forms.ModelForm):
         model = TransferenciaDeMedicamentos
         fields = ['sucursal_origen', 'sucursal_destino', 'medicamento', 'cantidad_transferencia', 'fecha']
 
-from django import forms
+
 from .models import DetalleVenta
 
 class DetalleVentaForm(forms.ModelForm):

@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Sistema de Gestión</title>
+    <title>Sistema de Gestión de la Farmacia Cuxibamba</title>
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -13,6 +13,7 @@
         }
         .container {
             display: flex;
+            flex-direction: column;
             width: 90%;
             margin: 0 auto;
             border: 1px solid #ccc;
@@ -26,6 +27,9 @@
             background-color: #00796b; /* Teal color */
             color: white;
             padding: 20px 0;
+        }
+        .main-content {
+            display: flex;
         }
         .sidebar {
             width: 30%;
@@ -91,62 +95,69 @@
     </script>
 </head>
 <body>
-    <div class="header">
-        <h1>Sistema de Gestión</h1>
-    </div>
     <div class="container">
-        <div class="sidebar">
-            <a onclick="showContent('medicamentos')">Gestionar Medicamentos</a>
-            <a onclick="showContent('clientes')">Gestionar Clientes</a>
-            <a onclick="showContent('direcciones')">Gestionar Direcciones</a>
-            <a onclick="showContent('farmacias')">Gestionar Farmacias</a>
-            <a onclick="showContent('sucursales')">Gestionar Sucursales</a>
-            <a onclick="showContent('administrativos')">Gestionar Administrativos</a>
-            <a onclick="showContent('ventas')">Gestionar Ventas</a>
-            <a onclick="showContent('inventarios')">Gestionar Inventarios</a>
-            <a onclick="showContent('transferencias')">Gestionar Transferencias</a>
-            <a onclick="showContent('detalles_venta')">Gestionar Detalles de Venta</a>
+        <div class="header">
+            <h1>Sistema de Gestión de la Farmacia Cuxibamba</h1>
         </div>
-        <div class="content">
-            <div id="medicamentos" class="content-section">
-                <!-- Contenido de Medicamentos -->
-                {% include 'medicamentos/medicamento_list.html' %}
+        <div class="main-content">
+            <div class="sidebar">
+                <a onclick="showContent('medicamentos')">Gestionar Medicamentos</a>
+                <a onclick="showContent('clientes')">Gestionar Clientes</a>
+                <a onclick="showContent('direcciones')">Gestionar Direcciones</a>
+                <a onclick="showContent('farmacias')">Gestionar Farmacias</a>
+                <a onclick="showContent('sucursales')">Gestionar Sucursales</a>
+                <a onclick="showContent('administrativos')">Gestionar Administrativos</a>
+                <a onclick="showContent('ventas')">Gestionar Ventas</a>
+                <a onclick="showContent('inventarios')">Gestionar Inventarios</a>
+                <a onclick="showContent('transferencias')">Gestionar Transferencias</a>
+                <a onclick="showContent('detalles_venta')">Gestionar Detalles de Venta</a>
+                <a onclick="showContent('usuarios')">Gestionar Usuarios</a>
             </div>
-            <div id="clientes" class="content-section">
-                <!-- Contenido de Clientes -->
-                {% include 'clientes/cliente_list.html' %}
-            </div>
-            <div id="direcciones" class="content-section">
-                <!-- Contenido de Direcciones -->
-                {% include 'direcciones/direccion_list.html' %}
-            </div>
-            <div id="farmacias" class="content-section">
-                <!-- Contenido de Farmacias -->
-                {% include 'farmacias/farmacia_list.html' %}
-            </div>
-            <div id="sucursales" class="content-section">
-                <!-- Contenido de Sucursales -->
-                {% include 'sucursales/sucursal_list.html' %}
-            </div>
-            <div id="administrativos" class="content-section">
-                <!-- Contenido de Administrativos -->
-                {% include 'administrativos/administrativo_list.html' %}
-            </div>
-            <div id="ventas" class="content-section">
-                <!-- Contenido de Ventas -->
-                {% include 'ventas/venta_list.html' %}
-            </div>
-            <div id="inventarios" class="content-section">
-                <!-- Contenido de Inventarios -->
-                {% include 'inventarios/inventario_list.html' %}
-            </div>
-            <div id="transferencias" class="content-section">
-                <!-- Contenido de Transferencias -->
-                {% include 'transferencias/transferencia_list.html' %}
-            </div>
-            <div id="detalles_venta" class="content-section">
-                <!-- Contenido de Detalles de Venta -->
-                {% include 'detalles_venta/detalle_venta_list.html' %}
+            <div class="content">
+                <div id="medicamentos" class="content-section">
+                    <!-- Contenido de Medicamentos -->
+                    {% include 'medicamentos/medicamento_list.html' %}
+                </div>
+                <div id="clientes" class="content-section">
+                    <!-- Contenido de Clientes -->
+                    {% include 'clientes/cliente_list.html' %}
+                </div>
+                <div id="direcciones" class="content-section">
+                    <!-- Contenido de Direcciones -->
+                    {% include 'direcciones/direccion_list.html' %}
+                </div>
+                <div id="farmacias" class="content-section">
+                    <!-- Contenido de Farmacias -->
+                    {% include 'farmacias/farmacia_list.html' %}
+                </div>
+                <div id="sucursales" class="content-section">
+                    <!-- Contenido de Sucursales -->
+                    {% include 'sucursales/sucursal_list.html' %}
+                </div>
+                <div id="administrativos" class="content-section">
+                    <!-- Contenido de Administrativos -->
+                    {% include 'administrativos/administrativo_list.html' %}
+                </div>
+                <div id="ventas" class="content-section">
+                    <!-- Contenido de Ventas -->
+                    {% include 'ventas/venta_list.html' %}
+                </div>
+                <div id="inventarios" class="content-section">
+                    <!-- Contenido de Inventarios -->
+                    {% include 'inventarios/inventario_list.html' %}
+                </div>
+                <div id="transferencias" class="content-section">
+                    <!-- Contenido de Transferencias -->
+                    {% include 'transferencias/transferencia_list.html' %}
+                </div>
+                <div id="detalles_venta" class="content-section">
+                    <!-- Contenido de Detalles de Venta -->
+                    {% include 'detalles_venta/detalle_venta_list.html' %}
+                </div>
+                <div id="usuarios" class="content-section">
+                    <!-- Contenido de Usuarios -->
+                    {% include 'usuarios/usuario_list.html' %}
+                </div>
             </div>
         </div>
     </div>

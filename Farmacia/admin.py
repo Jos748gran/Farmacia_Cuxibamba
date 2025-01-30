@@ -3,12 +3,11 @@ from .models import *
 
 # Register your models here.
 
-
 @admin.register(Cliente)
 class ClienteAdmin(admin.ModelAdmin):
-    list_display = ( 'nombre','dirección',)
-    list_filter = ('nombre', 'dirección')
-    search_fields = ('nombre', 'dirección')
+    list_display = ( 'cedula','nombre','teléfono','dirección',)
+    list_filter = ('cedula','nombre','teléfono','dirección',)
+    search_fields = ('cedula','nombre','teléfono','dirección',)
 
 @admin.register(Venta)
 class VentaAdmin(admin.ModelAdmin):
@@ -30,9 +29,14 @@ admin.site.register(Medicamento, MedicamentoAdmin)
 
 
 class InventarioAdmin(admin.ModelAdmin):
-    list_display = ( 'sucursal','cantidad_inventario',)
-    list_filter = ('sucursal','cantidad_inventario',)
-    search_fields = ('cantidad_inventario',)
+    list_display = ('sucursal', 'get_medicamento', 'cantidad_inventario',)
+    list_filter = ('sucursal', 'medicamento__nombre_medicamento', 'cantidad_inventario',)
+    search_fields = ('sucursal__nombre', 'medicamento__nombre_medicamento', 'cantidad_inventario',)
+
+    def get_medicamento(self, obj):
+        return ", ".join([medicamento.nombre_medicamento for medicamento in obj.medicamento.all()])
+    get_medicamento.short_description = 'Medicamento'
+
 admin.site.register(Inventario, InventarioAdmin)
 
 class TransferenciaDeMedicamentosAdmin(admin.ModelAdmin):
@@ -43,9 +47,8 @@ admin.site.register(TransferenciaDeMedicamentos, TransferenciaDeMedicamentosAdmi
 
 
 class SucursalAdmin(admin.ModelAdmin):
-    list_display = ('nombre', 'dirección', 'teléfono')
-    list_filter = ('nombre', 'dirección', 'teléfono')
-    search_fields = ('nombre', 'teléfono')
+    list_display = ('nombre', 'dirección', 'teléfono','farmacia')
+    list_filter = ('nombre', 'dirección', 'teléfono','farmacia')
 admin.site.register(Sucursal, SucursalAdmin)
 
 
@@ -62,7 +65,23 @@ class FarmaciaAdmin(admin.ModelAdmin):
 admin.site.register(Farmacia, FarmaciaAdmin)
 
 class UsuarioAdmin(admin.ModelAdmin):
-    list_display = ('cedula', 'nombre', 'teléfono', 'rol', 'nombre_usuario', )
-    list_filter = ('cedula', 'nombre', 'teléfono', 'rol', 'nombre_usuario', )
-    search_fields = ('cedula', 'nombre', 'teléfono', 'rol', 'nombre_usuario', )
+    model = Usuario
+    list_display = ('nombre_usuario', 'nombre', 'cedula', 'rol', 'is_staff', 'is_superuser')
+    list_filter = ('rol', 'is_staff', 'is_superuser')
+    fieldsets = (
+        (None, {'fields': ('nombre_usuario', 'password')}),
+        ('Información personal', {'fields': ('nombre', 'cedula', 'teléfono', 'rol')}),
+        ('Permisos', {'fields': ('is_staff', 'is_superuser', 'groups', 'user_permissions')}),
+        ('Fechas importantes', {'fields': ('last_login',)}),
+    )
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('nombre_usuario', 'password1', 'password2', 'nombre', 'cedula', 'teléfono', 'rol', 'is_staff', 'is_superuser', 'groups', 'user_permissions'),
+        }),
+    )
+    search_fields = ('nombre_usuario', 'nombre', 'cedula')
+    ordering = ('nombre_usuario',)
 admin.site.register(Usuario, UsuarioAdmin)
+
+
