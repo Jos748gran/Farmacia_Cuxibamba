@@ -6,9 +6,8 @@ from django.urls import path
 from Farmacia import views
 
 urlpatterns = [
-    # Otras rutas...
     path('admin/', admin.site.urls),
-    path('admin/crud/', views.crud_view, name='crud'),
+
     path('registrar_usuario/', views.registrar_usuario, name='registrar_usuario'),
     path('login/', views.login_view, name='login'),
     path('home/', views.home_view, name='home'),
@@ -24,7 +23,6 @@ urlpatterns = [
     path('accounts/password_reset/done/', PasswordResetDoneView.as_view(), name='password_reset_done'),
     path('accounts/reset/<uidb64>/<token>/', PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('accounts/reset/done/', PasswordResetCompleteView.as_view(), name='password_reset_complete'),
-    path('accounts/profile/', views.profile, name='profile'),
     path('medicamentos/', views.medicamento_list, name='medicamento_list'),
     path('medicamentos/create/', views.medicamento_create, name='medicamento_create'),
     path('medicamentos/<int:pk>/update/', views.medicamento_update, name='medicamento_update'),
@@ -62,8 +60,13 @@ urlpatterns = [
     path('transferencias/create/', views.transferencia_create, name='transferencia_create'),
     path('transferencias/<int:pk>/update/', views.transferencia_update, name='transferencia_update'),
     path('transferencias/<int:pk>/delete/', views.transferencia_delete, name='transferencia_delete'),
-path('detalles_venta/', views.detalle_venta_list, name='detalle_venta_list'),
+    path('detalles_venta/', views.detalle_venta_list, name='detalle_venta_list'),
     path('detalles_venta/create/', views.detalle_venta_create, name='detalle_venta_create'),
     path('detalles_venta/<int:pk>/update/', views.detalle_venta_update, name='detalle_venta_update'),
     path('detalles_venta/<int:pk>/delete/', views.detalle_venta_delete, name='detalle_venta_delete'),
+    path('usuarios/', views.usuario_list, name='usuario_list'),
+    path('usuarios/create/', views.usuario_create, name='usuario_create'),
+    path('usuarios/<int:pk>/update/', views.usuario_update, name='usuario_update'),
+    path('usuarios/<int:pk>/delete/', views.usuario_delete, name='usuario_delete'),
+
 ]

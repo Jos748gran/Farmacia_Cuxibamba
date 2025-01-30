@@ -3,14 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Formulario de Inventario</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/tablas.css' %}">
 </head>
 <body>
-    <h1>Formulario de Inventario</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Guardar</button>
-    </form>
-    <a href="{% url 'inventario_list' %}">Volver a la lista</a>
+    <div class="container">
+        <h1>Formulario de Inventario</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Guardar</button>
+        </form>
+        <a href="{% url 'inventario_list' %}">Volver a la lista</a>
+    </div>
 </body>
 </html>

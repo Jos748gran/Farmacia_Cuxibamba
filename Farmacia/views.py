@@ -13,9 +13,6 @@ from django.views.decorators.csrf import csrf_protect
 from Farmacia.forms import UsuarioForm
 
 
-@login_required
-def profile(request):
-    return render(request, 'profile.html')
 
 @login_required
 def home_view(request):
@@ -72,14 +69,10 @@ class CustomPasswordChangeView(PasswordChangeView):
     success_url = reverse_lazy('password_change_done')
 
 
-@user_passes_test(lambda u: u.is_superuser)
-def crud_view(request):
-    medicamentos = Medicamento.objects.all()
-    form = MedicamentoForm()
-    return render(request, 'crud.html', {'medicamentos': medicamentos, 'form': form})
+
 # Farmacia/views.py
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Medicamento
+from .models import Medicamento, Usuario
 from .forms import MedicamentoForm
 
 def medicamento_list(request):
@@ -434,3 +427,38 @@ def detalle_venta_delete(request, pk):
         detalle_venta.delete()
         return redirect('detalle_venta_list')
     return render(request, 'detalles_venta/detalle_venta_confirm_delete.html', {'detalle_venta': detalle_venta})
+
+def usuario_list(request):
+    usuarios = Usuario.objects.all()
+    return render(request, 'usuarios/usuario_list.html', {'usuarios': usuarios})
+
+def usuario_create(request):
+    if request.method == 'POST':
+        form = UsuarioForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('usuario_list')
+    else:
+        form = UsuarioForm()
+    return render(request, 'usuarios/usuario_form.html', {'form': form})
+
+def usuario_update(request, pk):
+    usuario = get_object_or_404(Usuario, pk=pk)
+    if request.method == 'POST':
+        form = UsuarioForm(request.POST, instance=usuario)
+        if form.is_valid():
+            form.save()
+            return redirect('usuario_list')
+    else:
+        form = UsuarioForm(instance=usuario)
+    return render(request, 'usuarios/usuario_form.html', {'form': form})
+
+def usuario_delete(request, pk):
+    usuario = get_object_or_404(Usuario, pk=pk)
+    if request.method == 'POST':
+        usuario.delete()
+        return redirect('usuario_list')
+    return render(request, 'usuarios/usuario_confirm_delete.html', {'usuario': usuario})
+
+
+
