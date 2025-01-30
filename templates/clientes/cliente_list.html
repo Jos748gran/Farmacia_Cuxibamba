@@ -3,33 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>Lista de Clientes</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/tablas.css' %}">
 </head>
-<body>
-    <h1>Lista de Clientes</h1>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Cédula</th>
-                <th>Nombre</th>
-                <th>Teléfono</th>
-                <th>Dirección</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for cliente in clientes %}
+<body class="cliente-list">
+    <div class="container">
+        <h1>Lista de Clientes</h1>
+        <table class="styled-table">
+            <thead>
                 <tr>
-                    <td>{{ cliente.cedula }}</td>
-                    <td>{{ cliente.nombre }}</td>
-                    <td>{{ cliente.teléfono }}</td>
-                    <td>{{ cliente.dirección }}</td>
-                    <td>
-                        <a href="{% url 'cliente_update' cliente.pk %}">Editar</a>
-                        <a href="{% url 'cliente_delete' cliente.pk %}">Eliminar</a>
-                    </td>
+                    <th>Cedula</th>
+                    <th>Nombre</th>
+                    <th>Teléfono</th>
+                    <th>Teléfono</th>
+                    <th>Acciones</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <a href="{% url 'cliente_create' %}">Crear Cliente</a>
+            </thead>
+            <tbody>
+                {% for cliente in clientes %}
+                    <tr>
+                        <td>{{ cliente.cedula }}</td>
+                        <td>{{ cliente.nombre }}</td>
+                        <td>{{ cliente.teléfono }}</td>
+                        <td>{{ cliente.dirección }}</td>
+                        <td>
+                            <a href="{% url 'cliente_update' cliente.pk %}"><button class="edit">Editar</button></a>
+                            <a href="{% url 'cliente_delete' cliente.pk %}"><button class="delete">Eliminar</button></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'cliente_create' %}"><button>Crear Cliente</button></a>
+        <a href="{% url 'management_system' %}"><button>Volver al Sistema de Gestión</button></a>
+    </div>
 </body>
 </html>

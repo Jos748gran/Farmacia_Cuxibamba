@@ -3,27 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Lista de Farmacias</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/tablas.css' %}">
 </head>
-<body>
-    <h1>Lista de Farmacias</h1>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for farmacia in farmacias %}
+<body class="farmacia-list">
+    <div class="container">
+        <h1>Lista de Farmacias</h1>
+        <table class="styled-table">
+            <thead>
                 <tr>
-                    <td>{{ farmacia.nombre }}</td>
-                    <td>
-                        <a href="{% url 'farmacia_update' farmacia.pk %}">Editar</a>
-                        <a href="{% url 'farmacia_delete' farmacia.pk %}">Eliminar</a>
-                    </td>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <a href="{% url 'farmacia_create' %}">Crear Farmacia</a>
+            </thead>
+            <tbody>
+                {% for farmacia in farmacias %}
+                    <tr>
+                        <td>{{ farmacia.nombre }}</td>
+                        <td>
+                            <a href="{% url 'farmacia_update' farmacia.pk %}"><button class="edit">Editar</button></a>
+                            <a href="{% url 'farmacia_delete' farmacia.pk %}"><button class="delete">Eliminar</button></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'farmacia_create' %}"><button>Crear Farmacia</button></a>
+        <a href="{% url 'management_system' %}"><button>Volver al Sistema de Gestión</button></a>
+    </div>
 </body>
 </html>

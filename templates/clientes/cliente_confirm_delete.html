@@ -3,14 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Confirmar Eliminación</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/tablas.css' %}">
 </head>
-<body>
-    <h1>Confirmar Eliminación</h1>
-    <p>¿Estás seguro de que deseas eliminar {{ cliente.nombre }}?</p>
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit">Eliminar</button>
-    </form>
-    <a href="{% url 'cliente_list' %}">Cancelar</a>
+<body class="cliente-list">
+    <div class="container">
+        <h1>Confirmar Eliminación</h1>
+        <p>¿Estás seguro de que deseas eliminar {{ cliente.nombre_cliente }}?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="delete">Eliminar</button>
+        </form>
+        <a href="{% url 'cliente_list' %}"><button>Cancelar</button></a>
+    </div>
 </body>
 </html>

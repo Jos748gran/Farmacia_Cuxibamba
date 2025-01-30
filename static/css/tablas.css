@@ -1,0 +1,186 @@
+@import url('background.css');
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background: #f0f0f0;
+    flex-direction: column;
+    color: #333;
+}
+
+.container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow-x: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background-color: #fff;
+    text-align: center; /* Center the text inside the container */
+    min-width: 700px;
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto; /* Permite desplazamiento si es necesario */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    overflow-x: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    table-layout: auto;
+}
+
+table, th, td {
+    border: 1px solid #000; /* Black border */
+}
+
+th, td {
+    padding: 10px; /* Increased padding */
+    text-align: left;
+    white-space: nowrap; /* Adjusted width for each column */
+    min-width: 150px;
+}
+
+th {
+    background-color: #00796b; /* Teal color */
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+a {
+    display: inline-block;
+    margin: 10px 0;
+    color: #00796b;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+a button {
+    background-color: #00796b; /* Teal button */
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+a button:hover {
+    background-color: #004d40; /* Darker teal on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+a button:active {
+    background-color: #00332e; /* Even darker teal on click */
+    transform: scale(1); /* Reset scale on click */
+}
+
+button.delete {
+    background-color: #d32f2f; /* Red button */
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button.delete:hover {
+    background-color: #b71c1c; /* Darker red on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+button.delete:active {
+    background-color: #8e0000; /* Even darker red on click */
+    transform: scale(1); /* Reset scale on click */
+}
+
+/* Form Table Styles */
+.form-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-table, .form-table th, .form-table td {
+    border: 1px solid #000; /* Black border */
+}
+
+.form-table th, .form-table td {
+    padding: 15px; /* Increased padding */
+    text-align: left;
+}
+
+.form-table th {
+    background-color: #00796b; /* Teal color */
+    color: white;
+}
+
+/* Form Buttons */
+form button {
+    background-color: #00796b; /* Teal button */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 10px;
+}
+
+form button:hover {
+    background-color: #004d40; /* Darker teal on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+form button:active {
+    background-color: #00332e; /* Even darker teal on click */
+    transform: scale(1); /* Reset scale on click */
+}
+/* Form Input Styles */
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form input[type="number"],
+form select,
+form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form input[type="password"]:focus,
+form input[type="number"]:focus,
+form select:focus,
+form textarea:focus {
+    border-color: #00796b; /* Teal border on focus */
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 121, 107, 0.5); /* Teal shadow on focus */
+}

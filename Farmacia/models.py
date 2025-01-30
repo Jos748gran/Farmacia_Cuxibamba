@@ -1,5 +1,6 @@
 from typing import Any
 
+from django.db import transaction
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.models import AbstractUser, PermissionsMixin
 from django.db import models
@@ -36,6 +37,9 @@ class Persona(models.Model):
 class Cliente(Persona):
     dirección = models.CharField(max_length=50)
 
+    def realizar_compra_de_venta_en_medicamentos(self):
+        pass
+
     def __str__(self):
         return self.nombre
 
@@ -47,6 +51,18 @@ class UsuarioManager(BaseUserManager):
         user = self.model(nombre_usuario=nombre_usuario, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
+        if user.rol == 'EMPLEADO':
+            group = Group.objects.get(name='Empleados')
+        elif user.rol == 'CLIENTE':
+            group = Group.objects.get(name='Clientes')
+        elif user.rol == 'ADMINISTRATIVO':
+            group = Group.objects.get(name='Administradores')
+        else:
+            group = None
+
+        if group:
+            user.groups.add(group)
+
         return user
 
     def create_superuser(self, nombre_usuario, password=None, **extra_fields):
@@ -55,10 +71,7 @@ class UsuarioManager(BaseUserManager):
 
         return self.create_user(nombre_usuario, password, **extra_fields)
 
-class Usuario(AbstractBaseUser, PermissionsMixin):
-    cedula = models.CharField(max_length=10, primary_key=True)
-    nombre = models.CharField(max_length=100)
-    teléfono = models.CharField(max_length=15)
+class Usuario(Persona, AbstractBaseUser, PermissionsMixin):
     rol = models.CharField(max_length=50, choices=[(tag.name, tag.value) for tag in Rol])
     nombre_usuario = models.CharField(max_length=50, unique=True)
     password = models.CharField(max_length=256)
@@ -128,6 +141,8 @@ class Venta(models.Model):
         choices=[(tag.name, tag.value) for tag in TipoDePago])
     fecha = models.DateField()
     total = models.FloatField()
+    def calcular_total(self):
+        pass
 
     def __str__(self):
         return f'{self.cliente} {self.sucursal} {self.tipo_pago} {self.fecha} {self.total}'
@@ -139,16 +154,18 @@ class Medicamento(models.Model):
         max_length=50,
         choices=[(tag.name, tag.value) for tag in Presentación]  # Usamos los valores del Enum
     )
+
     def __str__(self):
         return f'{self.nombre_medicamento} {self.descripcion} {self.presentación}'
 
 class Inventario(models.Model):
     sucursal = models.ForeignKey(Sucursal, on_delete=models.CASCADE, related_name='inventarios')
-    medicamento = models.ManyToManyField(Medicamento, related_name='inventarios')
+    medicamento  = models.ManyToManyField(Medicamento, related_name='inventarios')
     cantidad_inventario = models.IntegerField()
 
     def __str__(self):
-        return f'{self.sucursal} {self.medicamento} {self.cantidad_inventario}'
+        medicamento = ", ".join([medicamento.nombre_medicamento for medicamento in self.medicamento.all()])
+        return f'{self.sucursal} {medicamento} {self.cantidad_inventario}'
 
 class TransferenciaDeMedicamentos(models.Model):
     sucursal_origen = models.ForeignKey(Sucursal, on_delete=models.CASCADE, related_name='transferencias_origen')
@@ -161,6 +178,10 @@ class TransferenciaDeMedicamentos(models.Model):
         return (f'{self.sucursal_origen} {self.sucursal_destino} '
                 f'{self.medicamento} {self.cantidad_transferencia} {self.fecha}')
 
+    @transaction.atomic
+    def realizar_transferencia(self):
+        pass
+
 
 class DetalleVenta(models.Model):
     venta = models.ForeignKey(Venta, on_delete=models.CASCADE, related_name='detalles_venta')
@@ -170,3 +191,4 @@ class DetalleVenta(models.Model):
 
     def __str__(self):
         return f'{self.venta} {self.medicamento} {self.cantidad_medicamento} {self.precio}'
+

@@ -1,22 +1,9 @@
-/* static/css/home_login.css */
-
 /* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('background.css');
 
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('../img/HD-wallpaper-turquoise-sea-underwater-turquoise.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    opacity: 0.5; /* Ajusta la opacidad según sea necesario */
-    z-index: -1; /* Asegura que el fondo esté detrás del contenido */
-}
+/* General Styles */
+/* General Styles */
 body {
     display: flex;
     justify-content: center;
@@ -25,10 +12,20 @@ body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
     background: #f0f0f0;
+    flex-direction: column;
 }
 
 .container {
     text-align: center;
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1, h2 {
+    color: #000000 ; /* Teal color for headings */
+    text-align: center;
+    margin-top: 20px;
 }
 
 h1 {
@@ -36,24 +33,31 @@ h1 {
     margin-bottom: 20px;
 }
 
+/* Link Styles */
 a {
     display: inline-block;
     margin: 10px 20px;
     font-size: 1.5em;
+    color: #00796b;
+    text-decoration: none;
 }
 
 a button {
     padding: 15px 30px;
     font-size: 1.2em;
+    background-color: #00796b; /* Teal button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-
-h1, h2 {
-    color: #000; /* Teal color for headings */
-    text-align: center;
-    margin-top: 20px;
+a button:hover {
+    background-color: #004d40; /* Darker teal on hover */
 }
 
+/* Form Styles */
 form {
     background: #fff;
     padding: 30px;
@@ -96,25 +100,32 @@ form button:hover {
     background-color: #004d40; /* Darker teal on hover */
 }
 
-a {
-    display: inline-block;
-    margin: 10px 0;
-    color: #00796b;
-    text-decoration: none;
-    font-size: 16px;
-}
-
-a button {
-    background-color: #00796b; /* Teal button */
-    color: white;
-    border: none;
-    padding: 12px;
+/* Table Styles */
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: #fff;
     border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-a button:hover {
-    background-color: #004d40; /* Darker teal on hover */
+.styled-table, .styled-table th, .styled-table td {
+    border: 1px solid #000; /* Black border */
+}
+
+.styled-table th, .styled-table td {
+    padding: 15px; /* Increase padding */
+    text-align: left;
+    width: 75%; /* Adjust column width */
+}
+
+.styled-table th {
+    background-color: #00796b; /* Teal color */
+    color: white;
+}
+
+.styled-table tr:nth-child(even) {
+    background-color: #f2f2f2;
 }
