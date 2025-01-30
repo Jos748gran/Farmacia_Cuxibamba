@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Detalles de Venta</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/tablas.css' %}">
+</head>
+<body class="detalle-venta-list">
+    <div class="container">
+        <h1>Lista de Detalles de Venta</h1>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Venta</th>
+                    <th>Medicamento</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for detalle_venta in detalles_venta %}
+                    <tr>
+                        <td>{{ detalle_venta.venta }}</td>
+                        <td>{{ detalle_venta.medicamento }}</td>
+                        <td>{{ detalle_venta.cantidad_medicamento }}</td>
+                        <td>{{ detalle_venta.precio }}</td>
+                        <td>
+                            <a href="{% url 'detalle_venta_update' detalle_venta.pk %}"><button class="edit">Editar</button></a>
+                            <a href="{% url 'detalle_venta_delete' detalle_venta.pk %}"><button class="delete">Eliminar</button></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'detalle_venta_create' %}"><button>Crear Detalle de Venta</button></a>
+        <a href="{% url 'management_system' %}"><button>Volver al Sistema de Gestión</button></a>
+    </div>
+</body>
+</html>
