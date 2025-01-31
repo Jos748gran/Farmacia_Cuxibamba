@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Usuarios</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/tablas.css' %}">
+</head>
+<body class="usuario-list">
+    <div class="container">
+        <h1>Lista de Usuarios</h1>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Cédula</th>
+                    <th>Nombre</th>
+                    <th>Teléfono</th>
+                    <th>Rol</th>
+                    <th>Nombre de Usuario</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for usuario in usuarios %}
+                    <tr>
+                        <td>{{ usuario.cedula }}</td>
+                        <td>{{ usuario.nombre }}</td>
+                        <td>{{ usuario.teléfono }}</td>
+                        <td>{{ usuario.rol }}</td>
+                        <td>{{ usuario.nombre_usuario }}</td>
+                        <td>
+                            <a href="{% url 'usuario_update' usuario.pk %}"><button class="edit">Editar</button></a>
+                            <a href="{% url 'usuario_delete' usuario.pk %}"><button class="delete">Eliminar</button></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'usuario_create' %}"><button>Crear Usuario</button></a>
+        <a href="{% url 'management_system' %}"><button>Volver al Sistema de Gestión</button></a>
+    </div>
+</body>
+</html>

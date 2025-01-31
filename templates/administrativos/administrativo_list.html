@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Administrativos</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/tablas.css' %}">
+</head>
+<body class="administrativo-list">
+    <div class="container">
+        <h1>Lista de Administrativos</h1>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Cédula</th>
+                    <th>Nombre</th>
+                    <th>Teléfono</th>
+                    <th>Identificación</th>
+                    <th>Sueldo</th>
+                    <th>Sucursal</th>
+                    <th>Cargo</th>
+                    <th>Horario</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for administrativo in administrativos %}
+                    <tr>
+                        <td>{{ administrativo.cedula }}</td>
+                        <td>{{ administrativo.nombre }}</td>
+                        <td>{{ administrativo.teléfono }}</td>
+                        <td>{{ administrativo.identificación }}</td>
+                        <td>{{ administrativo.sueldo }}</td>
+                        <td>{{ administrativo.sucursal }}</td>
+                        <td>{{ administrativo.cargo }}</td>
+                        <td>{{ administrativo.horario }}</td>
+                        <td>
+                            <a href="{% url 'administrativo_update' administrativo.pk %}"><button class="edit">Editar</button></a>
+                            <a href="{% url 'administrativo_delete' administrativo.pk %}"><button class="delete">Eliminar</button></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'administrativo_create' %}"><button>Crear Administrativo</button></a>
+        <a href="{% url 'management_system' %}"><button>Volver al Sistema de Gestión</button></a>
+    </div>
+</body>
+</html>

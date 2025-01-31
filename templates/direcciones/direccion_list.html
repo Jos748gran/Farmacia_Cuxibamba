@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Direcciones</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/tablas.css' %}">
+</head>
+<body class="direccion-list">
+    <div class="container">
+        <h1>Lista de Direcciones</h1>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Calle Principal</th>
+                    <th>Calle Secundaria</th>
+                    <th>Ciudad</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for direccion in direcciones %}
+                    <tr>
+                        <td>{{ direccion.calle_principal }}</td>
+                        <td>{{ direccion.calle_secundaria }}</td>
+                        <td>{{ direccion.ciudad }}</td>
+                        <td>
+                            <a href="{% url 'direccion_update' direccion.pk %}"><button class="edit">Editar</button></a>
+                            <a href="{% url 'direccion_delete' direccion.pk %}"><button class="delete">Eliminar</button></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'direccion_create' %}"><button>Crear Dirección</button></a>
+        <a href="{% url 'management_system' %}"><button>Volver al Sistema de Gestión</button></a>
+    </div>
+</body>
+</html>

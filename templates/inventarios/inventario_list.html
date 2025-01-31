@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Inventarios</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/tablas.css' %}">
+</head>
+<body class="inventario-list">
+    <div class="container">
+        <h1>Lista de Inventarios</h1>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Sucursal</th>
+                    <th>Medicamento</th>
+                    <th>Cantidad en el Inventario</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for inventario in inventarios %}
+                    <tr>
+                        <td>{{ inventario.sucursal }}</td>
+                        <td>
+                            {% for medicamento in inventario.medicamento.all %}
+                                {{ medicamento.nombre_medicamento }}{% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        </td>
+                        <td>{{ inventario.cantidad_inventario }}</td>
+                        <td>
+                            <a href="{% url 'inventario_update' inventario.pk %}"><button class="edit">Editar</button></a>
+                            <a href="{% url 'inventario_delete' inventario.pk %}"><button class="delete">Eliminar</button></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'inventario_create' %}"><button>Crear Inventario</button></a>
+        <a href="{% url 'management_system' %}"><button>Volver al Sistema de Gestión</button></a>
+    </div>
+</body>
+</html>
