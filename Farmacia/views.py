@@ -41,6 +41,7 @@ def login_view(request):
     else:
         form = AuthenticationForm()
     return render(request, 'registration/login.html', {'form': form})
+
 def registrar_usuario(request):
     if request.method == 'POST':
         form = UsuarioForm(request.POST)
@@ -357,11 +358,11 @@ def inventario_delete(request, pk):
     return render(request, 'inventarios/inventario_confirm_delete.html', {'inventario': inventario})
 
 # Farmacia/views.py
-from .models import TransferenciaDeMedicamentos
+from .models import TransferenciaDeMedicamento
 from .forms import TransferenciaDeMedicamentosForm
 
 def transferencia_list(request):
-    transferencias = TransferenciaDeMedicamentos.objects.all()
+    transferencias = TransferenciaDeMedicamento.objects.all()
     return render(request, 'transferencias/transferencia_list.html', {'transferencias': transferencias})
 
 def transferencia_create(request):
@@ -375,7 +376,7 @@ def transferencia_create(request):
     return render(request, 'transferencias/transferencia_form.html', {'form': form})
 
 def transferencia_update(request, pk):
-    transferencia = get_object_or_404(TransferenciaDeMedicamentos, pk=pk)
+    transferencia = get_object_or_404(TransferenciaDeMedicamento, pk=pk)
     if request.method == 'POST':
         form = TransferenciaDeMedicamentosForm(request.POST, instance=transferencia)
         if form.is_valid():
@@ -386,7 +387,7 @@ def transferencia_update(request, pk):
     return render(request, 'transferencias/transferencia_form.html', {'form': form})
 
 def transferencia_delete(request, pk):
-    transferencia = get_object_or_404(TransferenciaDeMedicamentos, pk=pk)
+    transferencia = get_object_or_404(TransferenciaDeMedicamento, pk=pk)
     if request.method == 'POST':
         transferencia.delete()
         return redirect('transferencia_list')
