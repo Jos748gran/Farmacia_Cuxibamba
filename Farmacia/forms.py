@@ -80,11 +80,11 @@ class InventarioForm(forms.ModelForm):
 
 
 
-from .models import TransferenciaDeMedicamentos
+from .models import TransferenciaDeMedicamento
 
 class TransferenciaDeMedicamentosForm(forms.ModelForm):
     class Meta:
-        model = TransferenciaDeMedicamentos
+        model = TransferenciaDeMedicamento
         fields = ['sucursal_origen', 'sucursal_destino', 'medicamento', 'cantidad_transferencia', 'fecha']
 
 

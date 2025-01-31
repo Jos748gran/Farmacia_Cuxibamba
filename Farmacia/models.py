@@ -102,7 +102,6 @@ class Dirección(models.Model):
 class Farmacia(models.Model):
     nombre = models.CharField(max_length=50)
 
-
     def __str__(self):
         return self.nombre
 
@@ -135,7 +134,7 @@ class Administrativo(Empleado):
         return f'{self.cargo} {self.horario}'
 
 class Venta(models.Model):
-    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE,related_name='ventas')
     sucursal = models.ForeignKey(Sucursal, on_delete=models.CASCADE)
     tipo_pago = models.CharField(max_length=50,
         choices=[(tag.name, tag.value) for tag in TipoDePago])
@@ -167,7 +166,7 @@ class Inventario(models.Model):
         medicamento = ", ".join([medicamento.nombre_medicamento for medicamento in self.medicamento.all()])
         return f'{self.sucursal} {medicamento} {self.cantidad_inventario}'
 
-class TransferenciaDeMedicamentos(models.Model):
+class TransferenciaDeMedicamento(models.Model):
     sucursal_origen = models.ForeignKey(Sucursal, on_delete=models.CASCADE, related_name='transferencias_origen')
     sucursal_destino = models.ForeignKey(Sucursal, on_delete=models.CASCADE, related_name='transferencias_destino')
     medicamento = models.ForeignKey(Medicamento, on_delete=models.CASCADE, related_name='transferencias')
@@ -178,7 +177,6 @@ class TransferenciaDeMedicamentos(models.Model):
         return (f'{self.sucursal_origen} {self.sucursal_destino} '
                 f'{self.medicamento} {self.cantidad_transferencia} {self.fecha}')
 
-    @transaction.atomic
     def realizar_transferencia(self):
         pass
 

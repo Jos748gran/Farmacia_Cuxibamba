@@ -105,7 +105,7 @@ Este proyecto es una aplicación web para la gestión de una farmacia, desarroll
 
 ## UML
 
-![Farmacia](https://github.com/user-attachments/assets/332951a5-7224-4bf8-87ea-2aa7981a0d86)
+![Farmacia](https://github.com/user-attachments/assets/a7b75417-60e7-4c5b-a382-f8eecce341c1)
 
 ## Capturas de Pantalla
 

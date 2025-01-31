@@ -39,11 +39,11 @@ class InventarioAdmin(admin.ModelAdmin):
 
 admin.site.register(Inventario, InventarioAdmin)
 
-class TransferenciaDeMedicamentosAdmin(admin.ModelAdmin):
+class TransferenciaDeMedicamentoAdmin(admin.ModelAdmin):
     list_display = ('medicamento','cantidad_transferencia', 'fecha')
     list_filter = ('medicamento','cantidad_transferencia', 'fecha')
     search_fields = ('cantidad_transferencia', 'fecha')
-admin.site.register(TransferenciaDeMedicamentos, TransferenciaDeMedicamentosAdmin)
+admin.site.register(TransferenciaDeMedicamento, TransferenciaDeMedicamentoAdmin)
 
 
 class SucursalAdmin(admin.ModelAdmin):
